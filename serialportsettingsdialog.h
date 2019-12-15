@@ -47,6 +47,7 @@
 #include <QDialog>
 #include <QSerialPort>
 #include <QSettings>
+#include "qtserialportwidgets_global.h"
 
 QT_USE_NAMESPACE
 
@@ -60,7 +61,7 @@ class QIntValidator;
 
 QT_END_NAMESPACE
 
-class SerialPortSettingsDialog : public QDialog
+class QTSERIALPORTWIDGETS_EXPORT SerialPortSettingsDialog : public QDialog
 {
     Q_OBJECT
 
@@ -79,7 +80,7 @@ public:
         QString stringFlowControl;
     };
 
-    explicit SerialPortSettingsDialog(QWidget *parent = 0);
+    explicit SerialPortSettingsDialog(QWidget *parent = nullptr);
     ~SerialPortSettingsDialog();
     void addWidget(QWidget *widget);
     Settings settings() const;
@@ -103,6 +104,9 @@ private:
     Settings currentSettings;
     QSerialPort *m_port;
     void applyPortSettings(QSerialPort *port);
+
+signals:
+    void portSettingsApplied();
 };
 
 #endif // SETTINGSDIALOG_H
